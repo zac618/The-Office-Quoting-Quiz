@@ -19,31 +19,16 @@ async function getCharacters() {
         const randomCharacterPick = allCharacters[randomCharacterIndex]
         incorrectOptions.push(randomCharacterPick)
         console.log(randomCharacterPick)
+        // Here I need each iteration to add an option for the answers
     }
+    document.getElementById("nameOption2").innerHTML="-"+incorrectOptions[0];
+    document.getElementById("nameOption3").innerHTML="-"+incorrectOptions[1];
+    document.getElementById("nameOption4").innerHTML="-"+incorrectOptions[2];
     } catch (error) {
         console.log(error)
     }
 }
 
-console.log(allCharacters)
-
-
-function getQuote() {
-    let apiUrl = 'https://www.officeapi.dev/api/quotes/random';
-    fetch(apiUrl).then(response => {
-        return response.json();
-    }).then(data => {
-        let character=data['data']['character']['firstname'];
-        let lastName=data['data']['character']['lastname'];
-        let quote=data['data']['content']
-        let fullName=character+" "+lastName;
-        document.getElementById("quoteText").innerHTML="\""+quote+"\"";
-        document.getElementById("nameOption1").innerHTML="-"+fullName;
-        console.log(data)
-        // The above will likely need to be a separate api call to get a different random character as option 2
-        // It might make sense to have 4 different options and make it a multiple choice?? Idk
-    })
-}
 // getQuote2()
 
 // Minor Ty Refactor
@@ -59,7 +44,8 @@ async function getQuote2() {
         const fullName=`${character.firstname} ${character.lastname}`;
         document.getElementById("quoteText").innerHTML="\""+quote+"\"";
         document.getElementById("nameOption1").innerHTML="-"+fullName;
-        console.log(fullName)
+        console.log(fullName + " - correct answer")
+        incorrectOptions.push(fullName)
 
 
     // If request or any of the above fails, error will be thrown
@@ -68,26 +54,10 @@ async function getQuote2() {
     }
 }
 
-// function getName() {
-//     let apiUrl = 'https://www.officeapi.dev/api/characters/random';
-//     fetch(apiUrl).then(response => {
-//         return response.json();
-//     }).then(data => {
-//         let character=data['data']['firstname'];
-//         let lastName=data['data']['lastname'];
-//         let fullName=character+" "+lastName;
-//         document.getElementById("nameOption2").innerHTML="-"+fullName;
-//         console.log(fullName)
-//         // The above will likely need to be a separate api call to get a different random character as option 2
-//         // It might make sense to have 4 different options and make it a multiple choice?? Idk
-//     })
-// }
-// getName()
-
 // onInit is calling the getCharacters function so all characters are pulled into global array
 function onInit(){ 
     getCharacters()
-    getQuote()
+    getQuote2()
     console.log(incorrectOptions)
 }
 
@@ -95,13 +65,7 @@ onInit()
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-// 1. On page load, hit characters api to get all characters and store that in a global variable (array)
-// 2. Then, hit random quote api to get a random quote
-// 3. Once you have a random quote with corresponding character, grab 3 more random characters out of the characters variable (array) 
-// 4. Each character will get assigned to a corresponding 'answer' option on the buttons
-
-// 2/13/23
-// I have 1. finished...I'm using characters api to get all characters and they are stored in a global variable
-// I have 2. finished...previously set up the random quote api to get a random quote
-// I need to make sure the 3 random characters I'm getting with the getCharacters function do not repeat...(They also cannot be the correct character, so I need to tie in the getQuote function somehow)
-// 
+// 1. I need to create a check that doesn't add a character to the incorrect
+//      answers option if the character is the correct option.
+// 2. I need to randomize the order the answers display in. Right now the
+//      correct answer is the first answer every time.

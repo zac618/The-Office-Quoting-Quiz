@@ -60,14 +60,13 @@
 
     .answer-container {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-evenly;
-        height: 100px;
-        width: 60%;
         margin: 10px;
         border-width: 5px;
         border-color: var(--primary-color);
         border-style: solid;
+        padding: 20px;
     }
 
     .answer-field {
