@@ -28,14 +28,15 @@ async function getCharacters() {
         const randomCharacterIndex = Math.floor(Math.random()*allCharacters.length)
         const randomCharacterPick = allCharacters[randomCharacterIndex]
         // randomCharacterPick is the 'random' character from the allCharacters array
-        possibleAnswers.push(randomCharacterPick)
-        // Here I need each iteration to add an option for the answers
-        const answerContainer = document.querySelector(".answer-container");
-        const button = document.createElement("button");
-        button.textContent = randomCharacterPick;
-        button.classList.add("answer-button");
-        answerContainer.appendChild(button);
-        
+        if (possibleAnswers.includes(randomCharacterPick) !== -1) {
+            possibleAnswers.push(randomCharacterPick)
+            // Here I need each iteration to add an option for the answers
+            const answerContainer = document.querySelector(".answer-container");
+            const button = document.createElement("button");
+            button.textContent = randomCharacterPick;
+            button.classList.add("answer-button");
+            answerContainer.appendChild(button);
+        }
     }
     } catch (error) {
         console.log(error)
