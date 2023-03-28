@@ -1,17 +1,11 @@
 const rootApiUrl = 'https://www.officeapi.dev/api';
+// root api URL is the root of the API call
 const allCharacters = []
-const incorrectOptions = []
-const randomCharacter = Math.floor(Math.random()*allCharacters.length)
+// allCharacters is storing all possible character options
 const possibleAnswers = []
-const shuffleAnswers = possibleAnswers.sort();
+// possibleAnswers is using a 'random' index to fill it's array with 3 characters from the allCharacters array 
 
-const buttons = document.querySelectorAll('.answer-field');
 
-// possibleAnswers.sort(() => Math.random() - 0.5);
-
-buttons.forEach((button, index) => {
-    button.textContent = possibleAnswers[index];
-})
 
 
 // getCharacters function is getting characters and pushing them all to a global array to use later
@@ -25,20 +19,29 @@ async function getCharacters() {
         allCharacters.push(namesToPush)
     }
     for (let j = 0 ; j < 3 ; j++) {
+        //
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // I will need some sort of IF statement around here to check if randomCharacterPick is already in
+        // the possibleAnswers array. If it is, don't add it and move on to iterate thru the list again
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //
         const randomCharacterIndex = Math.floor(Math.random()*allCharacters.length)
         const randomCharacterPick = allCharacters[randomCharacterIndex]
+        // randomCharacterPick is the 'random' character from the allCharacters array
         possibleAnswers.push(randomCharacterPick)
         // Here I need each iteration to add an option for the answers
+        const answerContainer = document.querySelector(".answer-container");
+        const button = document.createElement("button");
+        button.textContent = randomCharacterPick;
+        button.classList.add("answer-button");
+        answerContainer.appendChild(button);
+        
     }
-
     } catch (error) {
         console.log(error)
     }
 }
 
-// getQuote2()
-
-// Minor Ty Refactor
 async function getQuote2() {
     try {
         // Fetch Random Quote
@@ -53,10 +56,17 @@ async function getQuote2() {
         // document.getElementById("nameOption1").innerHTML="-"+fullName;
         console.log(fullName + " - correct answer")
         possibleAnswers.push(fullName)
-        // document.getElementById("nameOption1").innerHTML="-"+possibleAnswers[0];
-        // document.getElementById("nameOption2").innerHTML="-"+possibleAnswers[1];
-        // document.getElementById("nameOption3").innerHTML="-"+possibleAnswers[2];
-        // document.getElementById("nameOption4").innerHTML="-"+possibleAnswers[3];
+        const answerContainer = document.querySelector(".answer-container");
+        const button = document.createElement("button");
+        
+        // !!!!!!!!!!!!!
+        // This needs to happen from the possibleAnswers array OUTSIDE OF THE FUNCTIONS. This will
+        // allow them to be 'randomized' and also checked for matching
+        button.textContent = fullName;
+        // !!!!!!!!!!!!!
+
+        button.classList.add("answer-button");
+        answerContainer.appendChild(button);
 
     // If request or any of the above fails, error will be thrown
     } catch (error) {
@@ -65,19 +75,22 @@ async function getQuote2() {
 }
 
 // onInit is calling the getCharacters function so all characters are pulled into global array
+// onInit is also calling the getQuote2 function...which gets quote and correct character answer
 function onInit(){ 
     getCharacters()
     getQuote2()
+    console.log(allCharacters)
     console.log(possibleAnswers)
-    console.log(shuffleAnswers)
-
 }
 
 onInit()
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-// 1. I need to create a check that doesn't add a character to the incorrect
-//      answers option if the character is the correct option.
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//          3.27.2023 Notes
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//
+// 1. I need to have the correct character answer populate into the 'possibleAnswers' array before any other
+//      character is added to it. THEN before characters are added, I can check to see if the array already
+//      includes that character, not adding the name if it already exists in the array
 // 2. I need to randomize the order the answers display in. Right now the
-//      correct answer is the first answer every time.
+//      correct answer is the last option every time (3.27.2023)
