@@ -2,6 +2,16 @@ const rootApiUrl = 'https://www.officeapi.dev/api';
 const allCharacters = []
 const incorrectOptions = []
 const randomCharacter = Math.floor(Math.random()*allCharacters.length)
+const possibleAnswers = []
+const shuffleAnswers = possibleAnswers.sort();
+
+const buttons = document.querySelectorAll('.answer-field');
+
+// possibleAnswers.sort(() => Math.random() - 0.5);
+
+buttons.forEach((button, index) => {
+    button.textContent = possibleAnswers[index];
+})
 
 
 // getCharacters function is getting characters and pushing them all to a global array to use later
@@ -17,13 +27,10 @@ async function getCharacters() {
     for (let j = 0 ; j < 3 ; j++) {
         const randomCharacterIndex = Math.floor(Math.random()*allCharacters.length)
         const randomCharacterPick = allCharacters[randomCharacterIndex]
-        incorrectOptions.push(randomCharacterPick)
-        console.log(randomCharacterPick)
+        possibleAnswers.push(randomCharacterPick)
         // Here I need each iteration to add an option for the answers
     }
-    document.getElementById("nameOption2").innerHTML="-"+incorrectOptions[0];
-    document.getElementById("nameOption3").innerHTML="-"+incorrectOptions[1];
-    document.getElementById("nameOption4").innerHTML="-"+incorrectOptions[2];
+
     } catch (error) {
         console.log(error)
     }
@@ -43,10 +50,13 @@ async function getQuote2() {
         console.log(quote);
         const fullName=`${character.firstname} ${character.lastname}`;
         document.getElementById("quoteText").innerHTML="\""+quote+"\"";
-        document.getElementById("nameOption1").innerHTML="-"+fullName;
+        // document.getElementById("nameOption1").innerHTML="-"+fullName;
         console.log(fullName + " - correct answer")
-        incorrectOptions.push(fullName)
-
+        possibleAnswers.push(fullName)
+        // document.getElementById("nameOption1").innerHTML="-"+possibleAnswers[0];
+        // document.getElementById("nameOption2").innerHTML="-"+possibleAnswers[1];
+        // document.getElementById("nameOption3").innerHTML="-"+possibleAnswers[2];
+        // document.getElementById("nameOption4").innerHTML="-"+possibleAnswers[3];
 
     // If request or any of the above fails, error will be thrown
     } catch (error) {
@@ -58,7 +68,9 @@ async function getQuote2() {
 function onInit(){ 
     getCharacters()
     getQuote2()
-    console.log(incorrectOptions)
+    console.log(possibleAnswers)
+    console.log(shuffleAnswers)
+
 }
 
 onInit()
