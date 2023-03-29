@@ -14,28 +14,32 @@ async function getCharacters() {
     try {
     const charactersCall = await fetch(`${rootApiUrl}/characters`);
     const rawCharactersList = await charactersCall.json();
+//      below is iterating through each item of the characters api call and pushing each character name to
+//      the allCharacters array
     for (let i = 0 ; i < rawCharactersList.data.length ; i++ ) {
         let namesToPush = `${rawCharactersList.data[i].firstname} ${rawCharactersList.data[i].lastname}`;
         allCharacters.push(namesToPush)
     }
     for (let j = 0 ; j < 3 ; j++) {
-        //
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        // I will need some sort of IF statement around here to check if randomCharacterPick is already in
-        // the possibleAnswers array. If it is, don't add it and move on to iterate thru the list again
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        //
         const randomCharacterIndex = Math.floor(Math.random()*allCharacters.length)
         const randomCharacterPick = allCharacters[randomCharacterIndex]
-        // randomCharacterPick is the 'random' character from the allCharacters array
+            // randomCharacterPick is the 'random' character from the allCharacters array using the 
+            // randomCharacterIndex which is 'random' enough for our needs
         if (possibleAnswers.includes(randomCharacterPick) !== -1) {
+                // this if statement is checking if the possibleAnswers array includes the name picked
+                // if the name is already in the array, it will skip this block and retry until j < 3 is false
             possibleAnswers.push(randomCharacterPick)
-            // Here I need each iteration to add an option for the answers
+                // adding the randomCharacterPick to the possibleAnswers array
             const answerContainer = document.querySelector(".answer-container");
+                // selecting the div with the class of "answer-container"
             const button = document.createElement("button");
+                // creating a variable called button and setting it as a created button element
             button.textContent = randomCharacterPick;
+                // setting the button's content to the value of randomCharacterPick
             button.classList.add("answer-button");
+                // adding a class to the answer button so we can style it later
             answerContainer.appendChild(button);
+                // appending button as a child of the answerContainer
         }
     }
     } catch (error) {
@@ -90,8 +94,5 @@ onInit()
 //          3.27.2023 Notes
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //
-// 1. I need to have the correct character answer populate into the 'possibleAnswers' array before any other
-//      character is added to it. THEN before characters are added, I can check to see if the array already
-//      includes that character, not adding the name if it already exists in the array
-// 2. I need to randomize the order the answers display in. Right now the
+// 1. I need to randomize the order the answers display in. Right now the
 //      correct answer is the last option every time (3.27.2023)
