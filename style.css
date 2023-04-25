@@ -73,6 +73,14 @@
         display: flex;
         margin: 10px;
         border-width: 5px;
+        border-color: var(--primary-color);
+        border-style: solid;
+    }
+
+    .answer-button-true {
+        display: flex;
+        margin: 10px;
+        border-width: 5px;
         border-color: var(--white-color);
         border-style: solid;
     }
