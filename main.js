@@ -60,53 +60,44 @@ async function getCharacters() {
     }
 }
 
-async function getQuote2() {
-    try {
-        // Fetch Random Quote
-        const apiResponse = await fetch(`${rootApiUrl}/quotes/random`);
-        // Get response data as json object
-        // apiResponse.json() = {data: {character, content, ...}}
-        const {data} = await apiResponse.json();
-        const {character, content: quote} = data || {};
-        console.log(quote);
-        const fullName=`${character.firstname} ${character.lastname}` + " - correct answer";
-        document.getElementById("quoteText").innerHTML="\""+quote+"\"";
-        // document.getElementById("nameOption1").innerHTML="-"+fullName;
-        console.log(fullName + " - correct answer")
-        possibleAnswers.push(fullName)
-        const answerContainer = document.querySelector(".answer-container");
-        const button = document.createElement("button");
+// async function getQuote2() {
+//     try {
+//         // Fetch Random Quote
+//         const apiResponse = await fetch(`${rootApiUrl}/quotes/random`);
+//         // Get response data as json object
+//         // apiResponse.json() = {data: {character, content, ...}}
+//         const {data} = await apiResponse.json();
+//         const {character, content: quote} = data || {};
+//         console.log(quote);
+//         const fullName=`${character.firstname} ${character.lastname}` + " - correct answer";
+//         document.getElementById("quoteText").innerHTML="\""+quote+"\"";
+//         // document.getElementById("nameOption1").innerHTML="-"+fullName;
+//         console.log(fullName + " - correct answer")
+//         possibleAnswers.push(fullName)
+//         const answerContainer = document.querySelector(".answer-container");
+//         const button = document.createElement("button");
         
-        // !!!!!!!!!!!!!
-        // This needs to happen from the possibleAnswers array OUTSIDE OF THE FUNCTIONS. This will
-        // allow them to be 'randomized' and also checked for matching
-        button.textContent = fullName;
-        // !!!!!!!!!!!!!
+//         // !!!!!!!!!!!!!
+//         // This needs to happen from the possibleAnswers array OUTSIDE OF THE FUNCTIONS. This will
+//         // allow them to be 'randomized' and also checked for matching
+//         button.textContent = fullName;
+//         // !!!!!!!!!!!!!
 
-        button.classList.add("answer-button-true");
-        answerContainer.appendChild(button);
+//         button.classList.add("answer-button-true");
+//         answerContainer.appendChild(button);
 
-    // If request or any of the above fails, error will be thrown
-    } catch (error) {
-        console.error(error);
-    }
-}
+//     // If request or any of the above fails, error will be thrown
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
 
-// onInit is calling the getCharacters function so all characters are pulled into global array
-// onInit is also calling the getQuote2 function...which gets quote and correct character answer
+// onInit is calling the getCharacters function so all the json data is pulled on page load
 function onInit(){ 
     getCharacters()
-    // getQuote2()
-    // console.log(allCharacters)
-    // console.log(possibleAnswers)
+    console.log(data.data[4])
 }
 
 onInit()
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//          3.27.2023 Notes
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//
-// 1. I need to randomize the order the answers display in. Right now the
-//      correct answer is the last option every time (3.27.2023)
 
