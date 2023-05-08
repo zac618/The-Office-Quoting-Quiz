@@ -1,43 +1,78 @@
 import data from './quotes.json' assert { type: 'json' }
 
 
-const rootApiUrl = '/Users/zacegleston/Documents/CodeThings/The-Office-Quoting-Quiz/quotes';
-// root api URL is the root of the API call
-const allCharacters = []
+
+
+// allQuotes is storing all possible quote options
+const allQuotes = []
 // allCharacters is storing all possible character options
-const possibleAnswers = []
-// possibleAnswers is using a 'random' index to fill it's array with 3 characters from the allCharacters array 
+const allCharacters = []
+const characterPick = []
 
-// function newgetCharacters() {
-//     console.log(data)
-// }
 
+// confirmed working test variables
+const testQuote = data.dataJSON[9].quote
+const testChar = data.dataJSON[9].character
+
+
+
+function getAllQuotes() {
+    for (let i = 0 ; i < data.dataJSON.length ; i++) {
+        let currentQuote = data.dataJSON[i].quote
+        allQuotes.push(currentQuote)
+    }
+}
+
+function getAllCharacters() {
+    for (let i = 0 ; i < data.dataJSON.length ; i++) {
+        let currentcharacter = data.dataJSON[i].character
+        allCharacters.push(currentcharacter)
+    }
+}
+
+function pickCharacter() {
+    const randomCharacterIndex = Math.floor(Math.random() * allCharacters.length)
+    const characterOption = characterPick.push(allCharacters[randomCharacterIndex]);
+}
+
+
+
+
+
+
+
+
+// NEED TO FIND A WAY TO DO THIS BUT MAKING THE HTML TAGS AUTOMATICALLY INCREMENT
+// ALSO NEED THE CHARACTERS TO AUTOMATICALLY POPULATE OBVIOUSLY...
+function testingQuote() {   
+    document.getElementById("quoteText").innerHTML=`${allQuotes[9]}`;
+    document.getElementById("characterText1").innerHTML=`${allCharacters[9]}`;
+    document.getElementById("characterText2").innerHTML=`${allCharacters[3]}`;
+    document.getElementById("characterText3").innerHTML=`${allCharacters[19]}`;
+    document.getElementById("characterText4").innerHTML=`${allCharacters[34]}`;
+
+}
+
+// New solution 5/2/23
+
+// - Need variable for correct answer 
+// - Need variable for incorrect answers (3)
+
+
+function getCorrectAnswer() {
+
+}
 
 // getCharacters function is getting characters and pushing them all to a global array to use later
 // getCharacters function is also getting 3 random characters for incorrect options
-async function getCharacters() {
-    try {
-    const charactersCall = await fetch("quotes.json");
-    // const rawCharactersList = await charactersCall.json();
-    console.log(data)
-//      below is iterating through each item of the characters api call and pushing each character name to
-//      the allCharacters array
-    // for (let i = 0 ; i < rawCharactersList.data.length ; i++ ) {
-    //     let namesToPush = `${rawCharactersList.data[i].firstname} ${rawCharactersList.data[i].lastname}`;
-    //     allCharacters.push(namesToPush)
-    // }
-    // for (let j = 0 ; possibleAnswers.length < 3 ; j++) {
-    //     while (possibleAnswers.length < 3) {
-    //         const randomCharacterIndex = Math.floor(Math.random() * allCharacters.length);
-    //         const randomCharacterPick = allCharacters[randomCharacterIndex];
-    //             // randomCharacterPick is the 'random' character from the allCharacters array using the 
-    //             // randomCharacterIndex which is 'random' enough for our needs
-    //             if (!possibleAnswers.includes(randomCharacterPick)) {
-    //                 possibleAnswers.push(randomCharacterPick);
-    //                 // this if statement is checking if the possibleAnswers array includes the name picked
-    //                 // if the name is already in the array, it will continue on until it has enough answers in the array
-    //             continue
-    //         } else {
+
+
+
+        document.getElementById("quoteText").innerHTML=`${testChar[0]}`;
+
+
+
+
     //             possibleAnswers.push(randomCharacterPick)
     //                 // adding the randomCharacterPick to the possibleAnswers array
     //             const answerContainer = document.querySelector(".answer-container");
@@ -50,54 +85,17 @@ async function getCharacters() {
     //                 // adding a class to the answer button so we can style it later
     //             answerContainer.appendChild(button);
     //                 // appending button as a child of the answerContainer
-    
-    //         }
-    //     }
-    
-    // }
-    } catch (error) {
-        console.log(error)
-    }
-}
 
-// async function getQuote2() {
-//     try {
-//         // Fetch Random Quote
-//         const apiResponse = await fetch(`${rootApiUrl}/quotes/random`);
-//         // Get response data as json object
-//         // apiResponse.json() = {data: {character, content, ...}}
-//         const {data} = await apiResponse.json();
-//         const {character, content: quote} = data || {};
-//         console.log(quote);
-//         const fullName=`${character.firstname} ${character.lastname}` + " - correct answer";
-//         document.getElementById("quoteText").innerHTML="\""+quote+"\"";
-//         // document.getElementById("nameOption1").innerHTML="-"+fullName;
-//         console.log(fullName + " - correct answer")
-//         possibleAnswers.push(fullName)
-//         const answerContainer = document.querySelector(".answer-container");
-//         const button = document.createElement("button");
-        
-//         // !!!!!!!!!!!!!
-//         // This needs to happen from the possibleAnswers array OUTSIDE OF THE FUNCTIONS. This will
-//         // allow them to be 'randomized' and also checked for matching
-//         button.textContent = fullName;
-//         // !!!!!!!!!!!!!
 
-//         button.classList.add("answer-button-true");
-//         answerContainer.appendChild(button);
-
-//     // If request or any of the above fails, error will be thrown
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
-
-// onInit is calling the getCharacters function so all the json data is pulled on page load
 function onInit(){ 
-    getCharacters()
-    console.log(data.data[4])
+    console.log(data.dataJSON.indexOf(testChar))
+    getAllQuotes()
+    getAllCharacters()
+    pickCharacter()
+    testingQuote()
+    console.log(allQuotes[9])
+    console.log(allCharacters[9])
+    console.log(characterPick)
 }
 
 onInit()
-
-
