@@ -43,14 +43,14 @@ function renderQuote() {
 
 function renderAnswers() {
     for ( let i = 0 ; i < 4 ; i++ ) {
-        // create a new div element
-    const createP = document.createElement("p")
+        // create a new button element
+    const createButton = document.createElement("button")
         // and give it some content
     const answerContent = document.createTextNode(options[i])
         // add the text node to the newly created div
-    createP.appendChild(answerContent)
+        createButton.appendChild(answerContent)
         // add the newly created element and its content into the DOM
-    answerContainer.appendChild(createP)
+    answerContainer.appendChild(createButton)
     }
 }
 
