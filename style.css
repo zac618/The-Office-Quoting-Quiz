@@ -29,22 +29,41 @@
     p {
         font-family: 'Poppins', sans-serif;
         font-weight: xx-large;
+        font-size: xx-large;
         background-color: var(--dark-color);
         color: var(--white-color);
         align-self: center;
-        padding-left: 25px;
+    }
+    
+
+    button:hover {
+        /* background-color: var(--dark-color);
+        -webkit-text-fill-color: var(--white-color);
+        transition: 0.7s; */
+        cursor: pointer;
+    }  
+
+    .answersClass:focus {
+        background-color: var(--primary-color);
+        -webkit-text-fill-color: var(--dark-color);
+        transition: 0.7s;
     }
 
-    button {
+    /* button {
         font-family: 'Poppins', sans-serif;
-        font-weight: xx-large;
+        font-weight: large;
+        font-size: large;
         width: 100%;
         background-color: var(--dark-color);
         color: var(--white-color);
         align-self: center;
         margin: 5px;
         padding: 10px;
-    }
+        border-width: var(--btn-border-size);
+        border-color: var(--white-color);
+        border-style: solid;
+        border-radius: 5px;
+    } */
     
     /* Classes Below This Line */
 
@@ -75,13 +94,15 @@
         position: relative;
         display: flex;
         justify-content: center;
-        width: 80%;
-        height: 300px;
-        margin-left: 10px;        
-        border-width: 5px;
+        text-align: center;
+        width: 50%;
+        height: 250px;
+        margin-left: 10px;     
+        margin-right: 10px;   
+        /* border-width: 5px;
         border-color: var(--white-color);
         border-style: solid;
-        border-radius: 50px;
+        border-radius: 50px; */
     }
 
     .answer-container {
@@ -89,7 +110,6 @@
         flex-direction: column;
         justify-content: space-evenly;
         margin: 10px;
-        border-width: 5px;
         padding: 20px;
     }
 
@@ -107,4 +127,34 @@
         border-width: 5px;
         border-color: var(--white-color);
         border-style: solid;
+    }
+
+    .submitAnswerBtn {
+        font-family: 'Poppins', sans-serif;
+        font-weight: large;
+        font-size: large;
+        width: 400px;
+        background-color: var(--dark-color);
+        color: var(--white-color);
+        align-self: center;
+        border-color: var(--white-color);
+        border-width: var(--btn-border-size);
+        border-style: solid;
+        border-radius: 5px;
+    }
+
+    .answersClass {
+        font-family: 'Poppins', sans-serif;
+        font-weight: large;
+        font-size: large;
+        width: 100%;
+        background-color: var(--dark-color);
+        color: var(--white-color);
+        align-self: center;
+        margin: 5px;
+        padding: 10px;
+        border-width: var(--btn-border-size);
+        border-color: var(--white-color);
+        border-style: solid;
+        border-radius: 5px;
     }

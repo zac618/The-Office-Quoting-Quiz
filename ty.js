@@ -4,78 +4,12 @@ import data from './quotes.json' assert { type: 'json' }
 const quoteContainer = document.getElementById("quoteContainer"); 
 const answerContainer = document.getElementById("answerContainer"); 
 
-let currentQuote;
-let currentOptions;
-const correctAnswer = []
-const randomIndex = Math.floor(Math.random() * data.dataJSON.length)
-// This line is just setting the submit button as a global variable
-let selectedAnswer
+// const quote = []
+// const options = []
+// const correctAnswer = []
 
-
-function setup() {
-  // Getting quote to display from json
-  currentQuote = getQuote();
-    console.log(currentQuote)
-  // Getting character options to display from json
-  // getOptions also handles randomizing the options
-  currentOptions = getOptions();
-    console.log(currentOptions)
-
-  // Generate answer buttons for options
-  const optionButtonElements = currentOptions.map((o) => {
-      return buildOptionButton(o);
-  });
-}
-
-function getQuote() {
-    return data.dataJSON[randomIndex].quote
-}
-
-function getOptions() {
-  const o = [data.dataJSON[randomIndex].character];
-  while (o.length < 4) {
-    let numForOptions = Math.floor(Math.random() * data.dataJSON.length)
-    let newCharacter = data.dataJSON[numForOptions].character
-    let nameExists = o.includes(newCharacter)
-
-    if (!nameExists) {
-      o.push(newCharacter);
-    }
-  }
-  function shuffleArray(o) {
-    for (var i = o.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var temp = o[i];
-        o[i] = o[j];
-        o[j] = temp;
-    }
-}
-  shuffleArray(o);
-  return o;
-}
-
-function buildOptionButton(o) {
-  const createButton = document.createElement("button")
-      // and give it some content
-  const answerContent = document.createTextNode(o)
-      // add a class to the newly created button
-  createButton.classList.add("answersClass");
-      // add the text node to the newly created div
-  createButton.appendChild(answerContent)
-
-  createButton.addEventListener('click', () => console.log('Clicked', o))
-      // add the newly created element and its content into the DOM
-  return createButton;
-}
-
-
-
-// Below this line is what I'm rebuilding from the previous version of this project based on 
-// Ty's feedback and rework
-
-
-
-
+// // This line is just setting the submit button as a global variable
+// let selectedAnswer
 
 // function getCorrectAnswer() {
 //     options.push(data.dataJSON[randomIndex].character)
@@ -199,5 +133,68 @@ function buildOptionButton(o) {
 
 // console.log(correctAnswer[0])
 
+/********
+ * TY SETUP
+ */
 
-setup()
+let currentQuote;
+let currentOptions = []
+let currentAnswer;
+function setup() {
+    // Get initial quote from json
+    currentQuote = getQuote()
+    // Generate options from quote + randoms
+    currentOptions = getOptions()
+
+    // Generate answer buttons for options
+    const optionButtonElements = currentOptions.map((option) => {
+        return buildOptionButton(option);
+    });
+
+    // Add options to HTML
+    answerContainer.appendChild(optionButtonElements);
+
+    console.log('Current Quote Object:', currentQuote);
+    console.log('Current Answers Array:', currentOptions);
+}
+
+function getOptions() {
+    const o = [currentQuote.character]
+    while (o.length < 4) {
+        let numForOptions = Math.floor(Math.random() * data.dataJSON.length)
+        let newCharacter = data.dataJSON[numForOptions].character
+        let nameExists = o.includes(newCharacter)
+        
+        if (!nameExists) {
+            o.push(newCharacter)
+        }
+    }
+    return o;
+}
+
+// Build and return button element
+function buildOptionButton(option) {
+    const createButton = document.createElement("button")
+        // and give it some content
+    const answerContent = document.createTextNode(option)
+        // add a class to the newly created button
+    createButton.classList.add("answersClass");
+        // add the text node to the newly created div
+    createButton.appendChild(answerContent)
+
+    createButton.addEventListener('click', () => console.log('Clicked', option))
+        // add the newly created element and its content into the DOM
+    return createButton;
+}
+
+
+function getQuote() {
+    const randomIndex = Math.floor(Math.random() * data.dataJSON.length)
+    return data.dataJSON[randomIndex]
+}
+
+function handleSubmitButtonPressed(selectedAnswer) {
+
+}
+
+setup();
