@@ -96,7 +96,7 @@
         justify-content: center;
         text-align: center;
         width: 50%;
-        height: 250px;
+        height: 200px;
         margin-left: 10px;     
         margin-right: 10px;   
         /* border-width: 5px;
@@ -155,6 +155,20 @@
         padding: 10px;
         border-width: var(--btn-border-size);
         border-color: var(--white-color);
+        border-style: solid;
+        border-radius: 5px;
+    }
+
+    .scoreContainer {
+        font-family: 'Poppins', sans-serif;
+        font-weight: large;
+        font-size: large;
+        width: 400px;
+        background-color: var(--dark-color);
+        color: var(--white-color);
+        align-self: center;
+        border-color: var(--white-color);
+        border-width: var(--btn-border-size);
         border-style: solid;
         border-radius: 5px;
     }

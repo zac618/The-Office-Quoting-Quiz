@@ -184,6 +184,7 @@ function buildOptionButton(option) {
 
     createButton.addEventListener('click', () => console.log('Clicked', option))
         // add the newly created element and its content into the DOM
+    
     return createButton;
 }
 
