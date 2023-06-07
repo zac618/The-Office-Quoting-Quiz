@@ -34,7 +34,7 @@ function setup() {
     buildOptionButtons();
 
   getCorrectAnswer();
-    console.log(correctAnswer)
+    // console.log(correctAnswer)
 
   submittingAnswer();
 
@@ -164,22 +164,22 @@ function submittingAnswer() {
         // This line does not use the "===" operator because
         // the selectedAnswer is a string and the correctAnswer is an array       
       if (selectedAnswer == correctAnswer) {
-        console.log("correct")
+        // console.log("correct")
         clear()
         currentScore++
         questionsAnswered()
-        console.log(questions)
+        // console.log(questions)
         nextQuote()
-        console.log(currentScore)
+        // console.log(currentScore)
       } else {
-        console.log("incorrect")
+        // console.log("incorrect")
         clear()
         questionsAnswered()
-        console.log("questions answered: " + questions)
+        // console.log("questions answered: " + questions)
         nextQuote()
     }
     } else {
-      console.log("questions answered: " + questions)
+      // console.log("questions answered: " + questions)
     }
   });
   
@@ -207,7 +207,7 @@ function nextQuote() {
 // function getScore() {
 //   return currentScore;
 // }
-console.log('nothing')
+// console.log('nothing')
 
 
 setup()
