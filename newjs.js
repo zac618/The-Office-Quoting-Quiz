@@ -8,8 +8,9 @@ const answerContainer = document.getElementById("answerContainer");
 let currentQuote;
 let currentOptions;
 let correctAnswer;
+let questions = 0;
 let currentScore = 0;
-const randomIndex = Math.floor(Math.random() * data.dataJSON.length)
+let randomIndex = Math.floor(Math.random() * data.dataJSON.length)
 // This line is just setting the submit button as a global variable
 let selectedAnswer
   // The below line is just setting the submit button as a global variable
@@ -37,6 +38,10 @@ function setup() {
 
   submittingAnswer();
 
+}
+
+function getNewRandomIndex() {
+  randomIndex = Math.floor(Math.random() * data.dataJSON.length)
 }
 
     // getQuote is where we get the quote from the json to be used in the game
@@ -78,6 +83,16 @@ function renderScore() {
     createScoreP.appendChild(scoreContent)
       // add the newly created element and its content into the DOM
     scoreContainer.appendChild(createScoreP)
+}
+
+function clear() {
+  scoreContainer.innerHTML = "";
+  quoteContainer.innerHTML = "";
+  answerContainer.innerHTML = "";
+}
+
+function questionsAnswered() {
+  questions ++
 }
 
     // renderQuote is where we display the quote on the page
@@ -140,8 +155,8 @@ function submittingAnswer() {
       }
     }
 
-      // This line is just logging the selected answer to the console
-    console.log("Selected answer:", selectedAnswer);
+    //   // This line is just logging the selected answer to the console
+    // console.log("Selected answer:", selectedAnswer);
 
       // This line is checking to see if the selectedAnswer variable is defined or not
       // if it is, our action will be performed, if not, we will log a message to the console
@@ -150,19 +165,44 @@ function submittingAnswer() {
         // the selectedAnswer is a string and the correctAnswer is an array       
       if (selectedAnswer == correctAnswer) {
         console.log("correct")
+        clear()
         currentScore++
-        renderScore()
+        questionsAnswered()
+        console.log(questions)
+        nextQuote()
+        console.log(currentScore)
       } else {
         console.log("incorrect")
+        clear()
+        questionsAnswered()
+        console.log("questions answered: " + questions)
+        nextQuote()
     }
-
     } else {
-      console.log("Please select an answer.");
+      console.log("questions answered: " + questions)
     }
   });
   
 }
 
+function reset() {
+  questions = 0;
+  currentScore = 0;
+  randomIndex = Math.floor(Math.random() * data.dataJSON.length)
+}
+
+
+function nextQuote() {
+  if (questions < 5) {
+  getNewRandomIndex()
+  setup()
+  } else {
+    console.log("game over")
+    window.alert("You got " + currentScore + " out of 5 correct. Press OK to play again.")
+    reset()
+    setup()
+  }
+}
 
 // function getScore() {
 //   return currentScore;
