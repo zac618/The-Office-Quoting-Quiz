@@ -207,7 +207,7 @@ function nextQuote() {
 // function getScore() {
 //   return currentScore;
 // }
-
+console.log('nothing')
 
 
 setup()
