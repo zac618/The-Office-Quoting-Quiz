@@ -27,6 +27,7 @@
     }
 
     p {
+        display: flex;
         font-family: 'Poppins', sans-serif;
         font-weight: xx-large;
         font-size: xx-large;
@@ -106,7 +107,6 @@
     }
 
     .answer-container {
-        display: flex;
         flex-direction: column;
         justify-content: space-evenly;
         margin: 10px;
