@@ -107,18 +107,22 @@
     }
 
     .answer-container {
+        display: flex;
         flex-direction: column;
-        justify-content: space-evenly;
+        justify-content: center;
+        text-align: center;
         margin: 10px;
         padding: 20px;
     }
 
-    .answer-button {
+    /* .answer-button {
         display: flex;
         margin: 10px;
         border-width: 5px;
         border-color: var(--primary-color);
         border-style: solid;
+        flex-direction: row;
+        justify-content: center;
     }
 
     .answer-button-true {
@@ -127,7 +131,7 @@
         border-width: 5px;
         border-color: var(--white-color);
         border-style: solid;
-    }
+    } */
 
     .submitAnswerBtn {
         font-family: 'Poppins', sans-serif;
@@ -144,10 +148,10 @@
     }
 
     .answersClass {
+        display: flex;
         font-family: 'Poppins', sans-serif;
         font-weight: large;
         font-size: large;
-        width: 100%;
         background-color: var(--dark-color);
         color: var(--white-color);
         align-self: center;
@@ -157,6 +161,8 @@
         border-color: var(--white-color);
         border-style: solid;
         border-radius: 5px;
+        flex-direction: row;
+        justify-content: center;
     }
 
     .scoreContainer {
@@ -173,15 +179,20 @@
         border-radius: 5px;
     }
 
+    @media (max-width: 1920px) {
+        .answersClass {
+          width: 100%; /* Adjust the width as needed for smaller screens */
+        }
+      }
+
     @media (max-width: 768px) {
         .answersClass {
-          width: 90%; /* Adjust the width as needed for smaller screens */
+          width: 80%; /* Adjust the width as needed for smaller screens */
         }
       }
       
       @media (max-width: 480px) {
         .answersClass {
-          width: 80%; /* Adjust the width as needed for even smaller screens */
+          width: 70%; /* Adjust the width as needed for even smaller screens */
         }
     }
-    
