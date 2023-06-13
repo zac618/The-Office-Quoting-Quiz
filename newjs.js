@@ -207,7 +207,7 @@ function nextQuote() {
   setup()
   } else {
     console.log("game over")
-    window.alert("You got " + currentScore + " out of 5 correct. Press OK to play again.")
+    window.alert("You got " + currentScore + " out of 5 correct. Press OK or Close to play again.")
     reset()
     setup()
   }
