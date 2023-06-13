@@ -29,7 +29,7 @@
     p {
         font-family: 'Poppins', sans-serif;
         font-weight: bold;
-         font-size: 20px;
+        font-size: 20px;
         color: var(--white-color);
         text-align: center;
         margin: 10px;
@@ -180,19 +180,19 @@
     }
 
     @media (max-width: 1920px) {
-        .answersClass {
+        .answersClass, .scoreContainer {
           width: 100%; /* Adjust the width as needed for smaller screens */
         }
       }
 
     @media (max-width: 768px) {
-        .answersClass {
+        .answersClass, .scoreContainer {
           width: 80%; /* Adjust the width as needed for smaller screens */
         }
       }
       
       @media (max-width: 480px) {
-        .answersClass {
+        .answersClass, .scoreContainer {
           width: 70%; /* Adjust the width as needed for even smaller screens */
         }
     }

@@ -1,4 +1,11 @@
-import data from './quotes.json' assert { type: 'json' }
+// import data from './quotes.json' 
+
+window.onload = async function () {
+  const response = await fetch("./quotes.json");
+  const data = await response.json();
+  // Your code
+
+
 
 // html elements 
 const scoreContainer = document.getElementById("scoreContainer"); 
@@ -20,6 +27,8 @@ const answerButtons = document.getElementsByClassName("answersClass");
 
     // The setup function is where we call all of the functions that we need to run
 function setup() {
+
+
 
     // Displaying the score on the page
     renderScore();
@@ -211,3 +220,5 @@ function nextQuote() {
 
 
 setup()
+
+}
