@@ -147,6 +147,7 @@ function submittingAnswer() {
       }
       // Add the "selected" class to the clicked button
       this.classList.add("selected");
+      this.focus({focusVisible: true});
     });
   }
 
