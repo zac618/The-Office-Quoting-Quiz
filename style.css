@@ -145,6 +145,7 @@
         border-width: var(--btn-border-size);
         border-style: solid;
         border-radius: 5px;
+        padding: 5px;
     }
 
     .answersClass {
