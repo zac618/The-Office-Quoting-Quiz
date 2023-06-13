@@ -186,13 +186,13 @@
       }
 
     @media (max-width: 768px) {
-        .answersClass, .scoreContainer {
+        .answersClass, .scoreContainer, .submitAnswerBtn, .quote-container {
           width: 80%; /* Adjust the width as needed for smaller screens */
         }
       }
       
       @media (max-width: 480px) {
-        .answersClass, .scoreContainer {
-          width: 70%; /* Adjust the width as needed for even smaller screens */
+        .answersClass, .scoreContainer, .submitAnswerBtn, .quote-container {
+          width: 100%; /* Adjust the width as needed for even smaller screens */
         }
     }

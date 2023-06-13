@@ -3,7 +3,6 @@
 window.onload = async function () {
   const response = await fetch("./quotes.json");
   const data = await response.json();
-  // Your code
 
 
 
